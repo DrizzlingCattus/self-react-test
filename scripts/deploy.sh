@@ -11,4 +11,4 @@ echo "echo ''" > $ask
 chmod +x $ask
 
 echo "$SSH_SECRET" >fifo | SSH_ASKPASS=$ask ssh-add fifo
-scp -P $SSH_PORT -r build stenrine@boostcamp.stenrine.com:/home/stenrine/build
+scp -o "StrictHostKeyChecking no" -P $SSH_PORT -r build stenrine@boostcamp.stenrine.com:/home/stenrine/build
