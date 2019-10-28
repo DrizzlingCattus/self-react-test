@@ -6,7 +6,7 @@ mkfifo -m=600 fifo
 # https://stackoverflow.com/questions/17846529/could-not-open-a-connection-to-your-authentication-agent/4086756#408675://stackoverflow.com/questions/17846529/could-not-open-a-connection-to-your-authentication-agent/4086756#4086756
 eval $(ssh-agent -s)
 
-SSH_ASKPASS=''
+SSH_ASKPASS="./ask.sh"
 echo "$SSH_SECRET" >fifo | ssh-add fifo
 #ssh-add <(echo "$SSH_SECRET")
 scp -o "StrictHostKeyChecking no" -P $SSH_PORT -r build stenrine@boostcamp.stenrine.com:/home/stenrine/build
