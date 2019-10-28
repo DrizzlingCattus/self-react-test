@@ -22,8 +22,8 @@ describe('<HookCounter/>', () => {
         plusButton.simulate('click');
         plusButton.simulate('click');
 
-        console.log(wrapper.context('foo'));
-        console.log(wrapper.state());
+        //console.log(wrapper.context('foo'));
+        //console.log(wrapper.state());
         const number = wrapper.find('h2');
 
         expect(number.text()).toBe('2');
