@@ -2,5 +2,21 @@ dist: xenial
 language: node_js
 node_js:
     - 10
+before_install: |
+  [[ ! -x ~/npm/node_modules/.bin/npm ]] && {
+    # caching feature creates `~/npm` for us
+    cd ~/npm && npm install npm
+    cd -
+  } || true
+  # avoids bugs around https://github.com/travis-ci/travis-ci/issues/5092
+  export PATH=~/npm/node_modules/.bin:$PATH
 install:
     - npm install
+    - npm install -g serve
+script:
+    - npm run build
+deploy:
+    - provider: script
+      script: bash scripts/deploy.sh
+      on:
+          branch: master
