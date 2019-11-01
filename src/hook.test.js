@@ -24,6 +24,7 @@ describe('<HookCounter/>', () => {
 
         //console.log(wrapper.context('foo'));
         //console.log(wrapper.state());
+        console.log('hello');
         const number = wrapper.find('h2');
 
         expect(number.text()).toBe('2');
