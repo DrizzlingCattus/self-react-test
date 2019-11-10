@@ -1,19 +1,13 @@
 stages:
   - lint
   - name: integration test 
-    branches:
-      only:
-        - master
-        - release
-        - hotfix
+    if: branch in (master, release, hotfix)
   - name: unit test
-    branches:
-      only:
-        - develop
+    if: branch = develop
   - name: deploy
-    branches:
-      only:
-        - master
+    if: branch = master
+  - name: others
+    if: branch != master
 
 dist: xenial
 language: node_js
@@ -44,3 +38,13 @@ jobs:
       name: "unit test"
       script: 
         - npm start test.unit
+    
+    - stage: deploy
+      name: "deploy"
+      script:
+        - echo "deploy!"
+
+    - stage: others
+      name: "others"
+      script:
+        - echo "others!"

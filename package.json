@@ -136,6 +136,7 @@
     ]
   },
   "devDependencies": {
+    "mocha": "^6.2.2",
     "nps": "^5.9.8"
   }
 }
