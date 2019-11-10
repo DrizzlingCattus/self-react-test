@@ -62,7 +62,7 @@
     "workbox-webpack-plugin": "4.3.1"
   },
   "scripts": {
-    "start": "node scripts/start.js",
+    "start": "nps",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js"
   },
@@ -94,7 +94,7 @@
     ],
     "setupFilesAfterEnv": [],
     "testMatch": [
-	"<rootDir>/test/*.{spec,test}.{js}",
+      "<rootDir>/test/*.{spec,test}.{js}",
       "<rootDir>/src/**/__tests__/**/*.{js,jsx,ts,tsx}",
       "<rootDir>/src/**/*.{spec,test}.{js,jsx,ts,tsx}"
     ],
@@ -134,5 +134,8 @@
     "presets": [
       "react-app"
     ]
+  },
+  "devDependencies": {
+    "nps": "^5.9.8"
   }
 }

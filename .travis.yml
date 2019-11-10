@@ -1,19 +1,46 @@
+stages:
+  - lint
+  - name: integration test 
+    branches:
+      only:
+        - master
+        - release
+        - hotfix
+  - name: unit test
+    branches:
+      only:
+        - develop
+  - name: deploy
+    branches:
+      only:
+        - master
+
 dist: xenial
 language: node_js
 node_js:
-    - 10
+  - 12
 env:
-    - CI=false
+  - CI=false
 before_install:
-  # avoids bugs around https://github.com/travis-ci/travis-ci/issues/5092
-    - export PATH=~/npm/node_modules/.bin:$PATH
+  - export PATH=~/npm/node_modules/.bin:$PATH
 install:
-    - npm install
-    - npm install -g serve
+  - npm install
 script:
-    - npm run build
-deploy:
-    - provider: script
-      script: bash scripts/deploy.sh
-      on:
-          branch: master
+  - npm run build
+
+jobs:
+  include:
+    - stage: lint
+      name: "Linting"
+      script:
+        - npm start lint
+
+    - stage: integration test
+      name: "integration test"
+      script: 
+        - npm start test.integration
+
+    - stage: unit test
+      name: "unit test"
+      script: 
+        - npm start test.unit
